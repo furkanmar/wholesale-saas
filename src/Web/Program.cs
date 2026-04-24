@@ -30,6 +30,9 @@ try
     // Middleware pipeline
     app.UseSerilogRequestLogging();
 
+    // Migration her ortamda çalışır — Docker container'da da gerekli
+    await app.InitialiseDatabaseAsync();
+
     if (app.Environment.IsDevelopment())
     {
         app.MapOpenApi();
