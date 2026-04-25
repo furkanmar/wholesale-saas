@@ -28,27 +28,6 @@ services:
     volumes:
       - seq_data:/data
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: wholesale-api
-    restart: always
-    ports:
-      - "5100:8080"
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=wholesale_dev;Username=wholesale;Password=wholesale_pass
-      - Jwt__Secret=dev-secret-key-minimum-32-characters-long!
-      - Jwt__Issuer=wholesale-api
-      - Jwt__Audience=wholesale-clients
-      - Jwt__AccessTokenMinutes=60
-      - Seq__ServerUrl=http://seq:80
-
 volumes:
   postgres_data:
   seq_data:
