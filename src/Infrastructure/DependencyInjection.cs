@@ -70,5 +70,6 @@ public static class DependencyInjection
         builder.Services.AddSingleton(TimeProvider.System);
         builder.Services.AddTransient<IJwtTokenService, JwtTokenService>();
         builder.Services.AddTransient<IIdentityService, IdentityService>();
+        builder.Services.AddTransient<IPasswordHasher, BcryptPasswordHasher>();
     }
 }
