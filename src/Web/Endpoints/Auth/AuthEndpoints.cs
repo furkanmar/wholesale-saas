@@ -15,7 +15,7 @@ public class AuthEndpoints : IEndpointGroup
 
     public static void Map(RouteGroupBuilder group)
     {
-        group.MapPost(Login).AllowAnonymous()
+        group.MapPost(Login, "login").AllowAnonymous()
             .Produces<AuthResponse>(200)
             .ProducesProblem(401)
             .ProducesProblem(422)
