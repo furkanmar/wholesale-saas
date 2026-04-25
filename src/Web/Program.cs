@@ -1,5 +1,6 @@
 using Scalar.AspNetCore;
 using Serilog;
+using Wholesale.Infrastructure.Data;
 using Wholesale.Web.Infrastructure;
 
 // Serilog bootstrap logger — uygulama başlamadan önce hataları yakalar
