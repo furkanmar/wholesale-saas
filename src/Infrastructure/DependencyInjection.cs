@@ -37,6 +37,8 @@ public static class DependencyInjection
         builder.Services.AddScoped<IApplicationDbContext>(
             sp => sp.GetRequiredService<ApplicationDbContext>());
 
+        builder.Services.AddScoped<ApplicationDbContextInitialiser>();
+
         // JWT auth
         var jwtSection = builder.Configuration.GetSection("Jwt");
         var secret = jwtSection["Secret"]!;
