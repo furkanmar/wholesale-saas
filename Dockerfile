@@ -18,7 +18,7 @@ RUN dotnet restore "src/Web/Web.csproj"
 
 # Kaynak kodu kopyala ve publish et
 COPY . .
-RUN dotnet publish "src/Web/Web.csproj" -c Release -o /app/publish --no-restore
+RUN dotnet publish "src/Web/Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
