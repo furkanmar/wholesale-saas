@@ -4,7 +4,7 @@ namespace Wholesale.Domain.Entities;
 
 public class User : BaseAuditableEntity
 {
-    public Guid TenantId { get; set; }
+    public Guid? TenantId { get; set; }
 
     public string Username { get; set; } = string.Empty;
 

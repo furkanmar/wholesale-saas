@@ -71,7 +71,7 @@ public class ApplicationDbContextInitialiser
             var superAdmin = new User
             {
                 Id           = Guid.NewGuid(),
-                TenantId     = Guid.Empty,
+                TenantId     = null,
                 Username     = "superadmin",
                 PasswordHash = BC.HashPassword("SuperAdmin123!"),
                 Role         = Roles.SuperAdmin,

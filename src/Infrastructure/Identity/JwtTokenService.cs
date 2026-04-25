@@ -29,8 +29,8 @@ public class JwtTokenService : IJwtTokenService
         };
 
         // SuperAdmin tenant claim taşımaz
-        if (user.TenantId != Guid.Empty)
-            claims.Add(new Claim("tenant_id", user.TenantId.ToString()));
+        if (user.TenantId.HasValue)
+            claims.Add(new Claim("tenant_id", user.TenantId.Value.ToString()));
 
         if (user.LinkedCustomerId.HasValue)
             claims.Add(new Claim("linked_customer_id", user.LinkedCustomerId.Value.ToString()));
