@@ -1,57 +1,35 @@
-﻿# Wholesale
+# Wholesale SaaS
 
-The project was generated using the [Clean.Architecture.Solution.Template](https://github.com/jasontaylordev/CleanArchitecture) version 10.8.0.
+A multi-tenant foundation for a wholesale management platform, built on **Clean Architecture** and **CQRS**.
 
-## Build
+This is an architectural exploration of the same domain as [toptan-satis](https://github.com/furkanmar/toptan-satis): how the product would look as a properly layered, multi-tenant SaaS.
 
-Run `dotnet build` to build the solution.
+## Architecture
 
-## Run
+```
+src/
+  Domain/          Entities (Tenant, User) — no dependencies
+  Application/     Use cases as MediatR commands/queries, validation, auth
+  Infrastructure/  EF Core + PostgreSQL, identity, external services
+  Web/             ASP.NET Core API
+  AppHost/         .NET Aspire orchestration
+tests/
+  Domain.UnitTests · Application.UnitTests
+  Application.FunctionalTests · Infrastructure.IntegrationTests
+```
 
-To run the application:
+- Started from [Jason Taylor's Clean Architecture template](https://github.com/jasontaylordev/CleanArchitecture) and adapted for multi-tenancy
+- JWT access + refresh token authentication
+- Docker Compose setup for PostgreSQL and the API
+
+## Running
 
 ```bash
-dotnet run --project .\src\AppHost
+dotnet run --project src/AppHost     # opens the Aspire dashboard
+# or
+docker compose up -d --build
 ```
 
-The Aspire dashboard will open automatically, showing the application URLs and logs.
+## Status
 
-## Code Styles & Formatting
-
-The template includes [EditorConfig](https://editorconfig.org/) support to help maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. The **.editorconfig** file defines the coding styles applicable to this solution.
-
-## Code Scaffolding
-
-The template includes support to scaffold new commands and queries.
-
-Start in the `.\src\Application\` folder.
-
-Create a new command:
-
-```
-dotnet new ca-usecase --name CreateTodoList --feature-name TodoLists --usecase-type command --return-type int
-```
-
-Create a new query:
-
-```
-dotnet new ca-usecase -n GetTodos -fn TodoLists -ut query -rt TodosVm
-```
-
-If you encounter the error *"No templates or subcommands found matching: 'ca-usecase'."*, install the template and try again:
-
-```bash
-dotnet new install Clean.Architecture.Solution.Template::10.8.0
-```
-
-## Test
-
-The solution contains unit, integration, and functional tests.
-
-To run the tests:
-```bash
-dotnet test
-```
-
-## Help
-To learn more about the template go to the [project website](https://cleanarchitecture.jasontaylor.dev). Here you can find additional guidance, request new features, report a bug, and discuss the template with other users.
+Early stage — tenant and auth foundation is in place; domain features are next.
